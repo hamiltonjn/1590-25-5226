@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title> 1590-25-5226-HECM</title>
+<style>
+  /* Reset y fuentes */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f5c14, #764ba2);
+    color: #e3dc96;
+  }
+
+  /* Menú lateral */
+  #menu {
+    width: 220px;
+    background: #0f5c14;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.3);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  #menu h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  #menu ul {
+    list-style: none;
+    padding: 0;
+  }
+  #menu ul li {
+    margin-bottom: 15px;
+  }
+  #menu ul li button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    font-size: 1rem;
+    padding: 10px 15px;
+    text-align: left;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  #menu ul li button:hover,
+  #menu ul li button.active {
+    background: #fff;
+    color: #0f5c14;
+    font-weight: bold;
+    box-shadow: 0 0 10px #fff;
+  }
+
+  /* Contenido principal */
+  #contenido {
+    flex-grow: 1;
+    background: #f7f7f7;
+    color: #222;
+    overflow-y: auto;
+    padding: 30px;
+  }
+  h1, h2 {
+    color: #2a2a72;
+    margin-bottom: 1rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  table, th, td {
+    border: 2px solid #2a2a72;
+  }
+  th, td {
+    padding: 12px;
+    text-align: center;
+  }
+  th {
+    background: #667eea;
+    color: white;
+  }
+  img.gallery-img {
+    margin: 5px;
+    border-radius: 8px;
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  img.gallery-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+  }
+
+  /* Video */
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(42,42,114,0.7);
+  }
+  .video-container iframe, 
+  .video-container object, 
+  .video-container embed {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+  }
+  /* Juego */
+  #juego-container {
+    text-align: center;
+  }
+  #juego-canvas {
+    background: #222;
+    border-radius: 12px;
+    box-shadow: 0 0 10px #2a2a72;
+    display: block;
+    margin: 0 auto 1rem auto;
+  }
+  button#start-game {
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  button#start-game:hover {
+    background: #764ba2;
+  }
+  /* Manual */
+  ol {
+    max-width: 700px;
+    margin-left: 20px;
+  }
+  ol li {
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+
+  /* Ocultar secciones */
+  section {
+    display: none;
+    animation: fadeIn 0.6s ease forwards;
+  }
+  section.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+</style>
+</head>
+<body>
+
+<div id="menu">
+  <h2>Menú</h2>
+  <ul>
+    <li><button class="menu-btn active" data-target="hoja">Hoja de Vida del Alumno</button></li>
+    <li><button class="menu-btn" data-target="notas">Tabla de Notas</button></li>
+    <li><button class="menu-btn" data-target="galeria">Galería de Imágenes</button></li>
+    <li><button class="menu-btn" data-target="video">Video de YouTube</button></li>
+    <li><button class="menu-btn" data-target="juego">Juego en JavaScript</button></li>
+    <li><button class="menu-btn" data-target="manual">Manual Técnico</button></li>
+  </ul>
+</div>
+
+<div id="contenido">
+  <!-- Hoja de vida -->
+  <section id="hoja" class="active" aria-label="Hoja de vida del alumno">
+    <h1>Hoja de Vida del Alumno</h1>
+    <p><strong>Nombre:</strong> Hamilton Elías Cabrera Martinez</p>
+    <p><strong>Carnet:</strong> 1590-25-5226</p>
+    <p><strong>Curso:</strong> Introducción a los sistemas de cómputo</p>
+    <p><strong>Descripción:</strong> Estudiante de Ingeniería en Sistemas.</p>
+  </section>
+
+  <!-- Tabla de notas -->
+  <section id="notas" aria-label="Tabla de notas de primer y segundo parcial">
+    <h1>Notas de Primer y Segundo Parcial</h1>
+    <table>
+      <thead>
+        <tr><th>Nombre</th><th>Primer Parcial</th><th>Segundo Parcial</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Hamilton Cabrera</td><td>7</td><td>6</td></tr>
+        
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Galería de imágenes -->
+  <section id="galeria" aria-label="Galería de imágenes">
+    <h1>Galería de Imágenes</h1>
+    <div>
+      <img src="https://picsum.photos/id/1011/200/130" alt="Imagen 1" class="gallery-img" />
+      <img src="https://picsum.photos/id/1025/200/130" alt="Imagen 2" class="gallery-img" />
+      <img src="https://picsum.photos/id/1035/200/130" alt="Imagen 3" class="gallery-img" />
+      <img src="https://picsum.photos/id/1043/200/130" alt="Imagen 4" class="gallery-img" />
+      <img src="https://picsum.photos/id/106/200/130" alt="Imagen 5" class="gallery-img" />
+      <img src="https://picsum.photos/id/1074/200/130" alt="Imagen 6" class="gallery-img" />
+      <img src="https://picsum.photos/id/1084/200/130" alt="Imagen 7" class="gallery-img" />
+      <img src="https://picsum.photos/id/1080/200/130" alt="Imagen 8" class="gallery-img" />
+      <img src="https://picsum.photos/id/109/200/130" alt="Imagen 9" class="gallery-img" />
+      <img src="https://picsum.photos/id/110/200/130" alt="Imagen 10" class="gallery-img" />
+    </div>
+  </section>
+
+  <!-- Video de YouTube -->
+  <section id="video" aria-label="Video de Youtube">
+    <h1>Video de YouTube</h1>
+    <div class="video-container" role="region" aria-label="Video de YouTube incrustado">
+      <iframe 
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        title="Video de YouTube" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Juego en JavaScript -->
+  <section id="juego" aria-label="Juego sencillo en JavaScript">
+    <h1>Juego en JavaScript</h1>
+    <div id="juego-container">
+      <canvas id="juego-canvas" width="400" height="400" aria-label="Canvas del juego"></canvas>
+      <br />
+      <button id="start-game">Iniciar Juego</button>
+      <p id="game-status" aria-live="polite" style="margin-top: 10px; font-weight: bold;"></p>
+    </div>
+  </section>
+
+  <!-- Manual Técnico -->
+  <section id="manual" aria-label="Manual Técnico para crear el sitio web">
+    <h1>Manual Técnico</h1>
+    <ol>
+      <li>Revisé los requisitos del sitio, que incluían un menú con varias secciones: hoja de vida, tabla de notas, galería, video, juego y manual técnico.</li>
+      <li>Decidí hacer todo en un solo archivo HTML para facilitar la gestión y visualización del sitio.</li>
+      <li>Diseñé un menú lateral con botones para cada sección, pensando en la usabilidad y experiencia del usuario.</li>
+      <li>Creé cada sección de contenido dentro del mismo archivo, inicialmente ocultas menos la sección de hoja de vida.</li>
+      <li>Implementé estilos CSS modernos para un diseño atractivo, con un menú fijo lateral y un área principal para mostrar el contenido seleccionado.</li>
+      <li>Programé la funcionalidad con JavaScript para que al hacer clic en un botón del menú se muestre la sección correspondiente y se oculten las demás.</li>
+      <li>Construí el contenido específico de cada sección: texto para hoja de vida y manual, tabla para notas, galería de imágenes usando URLs aleatorias, video de YouTube embebido, y el juego en canvas con JavaScript.</li>
+      <li>Programé el juego sencillo que permite al usuario interactuar y obtener puntajes, utilizando eventos de clic en el canvas.</li>
+      <li>Probé muchas veces que la navegación, visualización y el juego funcionen correctamente sin errores.</li>
+      <li>Organicé el código para que sea limpio, accesible y esté bien estructurado, usando etiquetas semánticas y atributos ARIA para mejorar la accesibilidad.</li>
+      <li>Finalicé reuniendo todo el código en un solo archivo listo para ser usado y entregado.</li>
+      <li>Documenté los pasos seguidos para explicar claramente el proceso de desarrollo.</li>
+    
+    </ol>
+  </section>
+</div>
+
+<script>
+  // Manejo del menú para mostrar secciones
+  const buttons = document.querySelectorAll('#menu .menu-btn');
+  const sections = document.querySelectorAll('#contenido section');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remover active de todos botones
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Mostrar la sección correspondiente
+      const target = button.getAttribute('data-target');
+      sections.forEach(section => {
+        if (section.id === target) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  // Juego sencillo: "Atrapa el Cuadrado"
+  const canvas = document.getElementById('juego-canvas');
+  const ctx = canvas.getContext('2d');
+  const startBtn = document.getElementById('start-game');
+  const statusText = document.getElementById('game-status');
+
+  let animationId;
+  let squareX, squareY;
+  const squareSize = 40;
+  let score = 0;
+  let gameRunning = false;
+
+  function randomPosition() {
+    return {
+      x: Math.random() * (canvas.width - squareSize),
+      y: Math.random() * (canvas.height - squareSize),
+    };
+  }
+
+  function drawSquare() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#667eea';
+    ctx.fillRect(squareX, squareY, squareSize, squareSize);
+  }
+
+  function gameLoop() {
+    drawSquare();
+    animationId = requestAnimationFrame(gameLoop);
+  }
+
+  function startGame() {
+    if (gameRunning) return;
+
+    gameRunning = true;
+    score = 0;
+    statusText.textContent = "Puntaje: " + score;
+    const pos = randomPosition();
+    squareX = pos.x;
+    squareY = pos.y;
+    gameLoop();
+  }
+
+  // Evento clic canvas para atrapar el cuadrado
+  canvas.addEventListener('click', (e) => {
+    if (!gameRunning) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+
+    if (
+      clickX >= squareX &&
+      clickX <= squareX + squareSize &&
+      clickY >= squareY &&
+      clickY <= squareY + squareSize
+    ) {
+      score++;
+      statusText.textContent = "Puntaje: " + score;
+      // Mover cuadrado a nueva posición
+      const pos = randomPosition();
+      squareX = pos.x;
+      squareY = pos.y;
+    }
+  });
+
+  // Detener juego con botón clic (opcional)
+  startBtn.addEventListener('click', startGame);
+</script>
+
+</body>
+</html>
+
+``` ⬤
